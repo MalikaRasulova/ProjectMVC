@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  forwork:
+    image: wsdl-example:v1
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "12232:12232"

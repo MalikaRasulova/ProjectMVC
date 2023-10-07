@@ -2,7 +2,9 @@ using ForWork.IICUTechservice;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls(builder.Configuration.GetSection("Urls:WebHost").Get<string>());  
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICUTechClient>();
 
