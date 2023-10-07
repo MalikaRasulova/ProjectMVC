@@ -16,4 +16,6 @@ jobs:
       working-directory: ForWork/ForWork
       run: docker-compose build
     - name: Execute 
+      working-directory: ./ForWork/ForWork
       run: docker-compose up
+      
