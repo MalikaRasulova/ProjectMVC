@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ForWork.Controllers;
 
-public class LoginController : Controller
+public class RegistrationController:Controller
 {
     private readonly ICUTechClient _client;
 
-    public LoginController(ICUTechClient client)
+    public RegistrationController(ICUTechClient client)
     {
         _client = client;
     }
@@ -17,30 +17,33 @@ public class LoginController : Controller
     [HttpGet]
     public async Task<ActionResult> Index()
     {
-        return View
-        ("Index", new LoginViewModel()
+  
+        return View("Register",new RegistrationViewModel()
         {
             IsSuccess = true
         });
     }
 
     [HttpPost]
-    public async Task<ActionResult> Login([FromForm] LoginDto loginDto)
+    public async Task<ActionResult> Register([FromForm] RegistrationDto Dto)
     {
         try
         {
-            LoginResponse response =
-                await _client.LoginAsync(loginDto.username, loginDto.password, base.Request.Host.Host);
+            RegisterNewCustomerResponse response =
+                await _client.RegisterNewCustomerAsync(Dto.Email, Dto.Password,
+                    Dto.FirstName,Dto.LastName,
+                    Dto.Mobil,Dto.CountryId
+                    ,Dto.AId,base.Request.Host.Host);
             ArgumentNullException.ThrowIfNull(response);
-            return View("Index", new LoginViewModel()
+            return View("Register", new RegistrationViewModel()
             {
                 Response = response.@return,
                 IsSuccess = false,
-            });
+            } );
         }
         catch (Exception e)
         {
-            return View("Index", new LoginViewModel()
+            return View("Register", new RegistrationViewModel()
             {
                 Response = null,
                 IsSuccess = false,

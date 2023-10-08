@@ -1,0 +1,69 @@
+@model RegistrationViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="w-100 d-flex justify-content-center">
+
+    <form asp-action="Register" asp-controller="Registration" class="text-center w-50 align-self-center d-flex flex-column gap-2 border border-1 shadow p-4">
+        @if (!Model.IsSuccess)
+        {
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                    <use xlink:href="#check-circle-fill"/>
+                </svg>
+                <div>
+                   @Model.Response
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                    <use xlink:href="#exclamation-triangle-fill"/>
+                </svg>
+                <div>
+                     @Model.Response
+                </div>
+            </div>
+        }
+        <div class="form-floating mb-3">
+            <input type="email" name="Email" class="form-control" required="true" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating pb-3">
+            <input type="password" name="Password" class="form-control" required="true" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating pb-3">
+            <input type="text" name="FirstName" class="form-control" required="true" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">FirstName</label>
+        </div>
+        <div class="form-floating pb-3">
+            <input type="text" name="LastName" class="form-control" required="true" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">LastName</label>
+        </div>
+        <div class="form-floating pb-3">
+            <input type="tel" name="Mobil" class="form-control" required="true" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Mobil</label>
+        </div>
+        <div class="input-group">
+            <select class="form-select" name="CountryId" id="inputGroupSelect04" aria-label="Example select with button addon">
+                <option selected>Choose...</option>
+                <option value="1">Uzbekistan</option>
+                <option value="2">Israel</option>
+                <option value="3">Russia</option>
+            </select>
+        </div>
+        <div class="form-floating pb-3">
+            <input type="number" name="AId" class="form-control" required="true" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">aID</label>
+        </div>
+
+
+        <button class="btn btn-primary W-25" type="submit">Submit form</button>
+
+    </form>
+</div>
